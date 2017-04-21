@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>hotel</title>
+</head>
+<body>
+<div style="width:45%; float:left;">
+    <form action="/page.html" method="POST">
+        Number:<br> <input type="text" name="roomNumber" maxlength="4"/><br>
+        BedsCount:<br> <input type="text" name="bedsCount" maxlength="1"/><br>
+        Rank:<br> <input type="text" name="rank"/><br>
+        Floor:<br> <input type="text" name="floor"/><br>
+        min Price:<br> <input type="text" name="minPrice" maxlength="4"/>UAH<br>
+        max Price:<br> <input type="text" name="maxPrice" maxlength="4"/>UAH<br><br>
+        is OK? &nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" value="Ok">
+    </form>
+</div>
+<div style="width:45%; float:left;">
+    <p>Number: ${roomNumber}</p>
+
+    <p>BedsCount: ${bedsCount}</p>
+
+    <p>Rank: ${rank}</p>
+
+    <p>Floor: ${floor}</p>
+
+    <p>MinPrice: ${minPrice}</p>
+
+    <p>MaxPrice: ${maxPrice}</p>
+    <p> ${isWrote}</p>
+</div>
+</body>
+</html>
+
