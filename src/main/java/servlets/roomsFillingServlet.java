@@ -1,6 +1,7 @@
 package servlets;
 
 import main.DBRoomWriter;
+import main.FieldValueExtractor;
 import templater.PageGenerator;
 
 import javax.servlet.ServletException;
@@ -18,7 +19,7 @@ import java.util.Map;
  *
  *
  */
-public class AllRequestsServlet extends HttpServlet {
+public class roomsFillingServlet extends HttpServlet {
 
     private static Map<String, String> roomParameters = new HashMap<>();
 
@@ -32,7 +33,7 @@ public class AllRequestsServlet extends HttpServlet {
         roomParameters.put("minPrice", "?");
         roomParameters.put("maxPrice", "?");
         roomParameters.put("isWrote", DBRoomWriter.isWrote);
-        response.getWriter().println(PageGenerator.instance().getPage("page.html", roomParameters));
+        response.getWriter().println(PageGenerator.instance().getPage("fillRooms.html", roomParameters));
 
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
@@ -44,22 +45,22 @@ public class AllRequestsServlet extends HttpServlet {
                        HttpServletResponse response) throws ServletException, IOException {
 
         // roomNumber
-        roomParameters.put("roomNumber", fieldValueExtractor("roomNumber", request, response));
+        roomParameters.put("roomNumber", FieldValueExtractor.extractFieldValue("roomNumber", request, response));
 
         // bedsCount
-        roomParameters.put("bedsCount", fieldValueExtractor("bedsCount", request, response));
+        roomParameters.put("bedsCount", FieldValueExtractor.extractFieldValue("bedsCount", request, response));
 
         // class
-        roomParameters.put("rank", fieldValueExtractor("rank", request, response));
+        roomParameters.put("rank", FieldValueExtractor.extractFieldValue("rank", request, response));
 
         // minPrice
-        roomParameters.put("floor", fieldValueExtractor("floor", request, response));
+        roomParameters.put("floor", FieldValueExtractor.extractFieldValue("floor", request, response));
 
         // minPrice
-        roomParameters.put("minPrice", fieldValueExtractor("minPrice", request, response));
+        roomParameters.put("minPrice", FieldValueExtractor.extractFieldValue("minPrice", request, response));
 
         // maxPrice
-        roomParameters.put("maxPrice", fieldValueExtractor("maxPrice", request, response));
+        roomParameters.put("maxPrice", FieldValueExtractor.extractFieldValue("maxPrice", request, response));
 
         // write room to DB
         DBRoomWriter.sendToDB(roomParameters);
@@ -67,20 +68,9 @@ public class AllRequestsServlet extends HttpServlet {
         roomParameters.put("isWrote", DBRoomWriter.isWrote);
 
         //refresh web-page
-        response.getWriter().println(PageGenerator.instance().getPage("page.html", roomParameters));
+        response.getWriter().println(PageGenerator.instance().getPage("fillRooms.html", roomParameters));
     }
 
-    private static String fieldValueExtractor(String fieldName, HttpServletRequest request, HttpServletResponse response){
-        String field = request.getParameter(fieldName);
 
-        response.setContentType("text/html;charset=utf-8");
-
-        if (field == null || field.isEmpty()) {
-            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-        } else {
-            response.setStatus(HttpServletResponse.SC_OK);
-        }
-       return field;
-    }
 
 }

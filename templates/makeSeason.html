@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>hotel</title>
+</head>
+<body>
+<div style="width:45%; float:left;">
+    <p>${promptText}</p>
+    <form action="/season" method="POST">
+        ${start}<br> <input type="date" name="startDate"/><br>
+        ${end}<br> <input type="date" name="endDate"/><br>
+        is OK? &nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" value="Ok">
+    </form>
+</div>
+<div style="width:45%; float:left;">
+    <p>Count of Days Treated: ${countDaysAdded}</p>
+
+
+    <p> ${isWrote}</p>
+</div>
+</body>
+</html>
+
