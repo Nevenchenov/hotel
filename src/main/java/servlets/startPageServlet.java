@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,20 +20,23 @@ import java.util.Map;
  */
 public class startPageServlet extends HttpServlet {
 
-    private static Map<String, String> roomParameters = new HashMap<>();
+    private static Map<String, String> userSeasonParameters = new HashMap<>();
 
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response) throws ServletException, IOException {
-        
-        roomParameters.put("rooms", "Fill Rooms");
-        roomParameters.put("season", "Choose Period");
 
-        response.getWriter().println(PageGenerator.instance().getPage("index.html", roomParameters));
+        String currentYear = String.valueOf(LocalDate.now().getYear());
+
+        userSeasonParameters.put("rooms", "set rooms");
+        userSeasonParameters.put("season", "generate season");
+        userSeasonParameters.put("occupationMapFill", "generate occupation map");
+
+
 
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
 
-
+        response.getWriter().println(PageGenerator.instance().getPage("setHotel.html", userSeasonParameters));
     }
 
     public void doPost(HttpServletRequest request,

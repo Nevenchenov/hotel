@@ -2,21 +2,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
-    <title>hotel</title>
+    <title>Бронирование мест. ${hotelName} ${currentYear}г.</title>
 </head>
 <body>
-<div>
-    <form action="/rooms" method="GET">
+<h1>${hotelName} Отдых ${currentYear}</h1>
+<div style="width:45%; float:left;">
+    <p>${promptText}</p>
+    <form action="/*" method="POST">
+        ${start}<br> <input type="date" name="startDate"/><br>
+        ${end}<br> <input type="date" name="endDate"/><br>
+        Показать &nbsp;&nbsp; -> &nbsp;&nbsp; <input type="submit" value="Ok">
+    </form>
+</div>
+<div style="width:45%; float:left;">
 
-         <input type="submit" value="${rooms}">
 
-          </form>
-      <form action="/season" method="GET">
 
-              <input type="submit" value="${season}">
-          </form>
-      </div>
 
+</div>
 </body>
 </html>
 

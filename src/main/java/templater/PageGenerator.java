@@ -42,5 +42,6 @@ public class PageGenerator {
 
     private PageGenerator() {
         cfg = new Configuration();
+        cfg.setDefaultEncoding("UTF-8");
     }
 }

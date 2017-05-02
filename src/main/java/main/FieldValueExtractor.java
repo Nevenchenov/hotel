@@ -4,7 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by Rain on 22-Apr-17.
+ * @author Y.Nevenchenov
+ *
+ *
+ * Created on 22-Apr-17.
  */
 public class FieldValueExtractor {
 

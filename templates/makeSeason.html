@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8"/>
     <title>hotel</title>
+    <style>
+        div {
+        width:45%;
+        float:left;"
+        }
+    </style>
 </head>
 <body>
-<div style="width:45%; float:left;">
+<div>
     <p>${promptText}</p>
     <form action="/season" method="POST">
         ${start}<br> <input type="date" name="startDate"/><br>
@@ -13,7 +19,7 @@
         is OK? &nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" value="Ok">
     </form>
 </div>
-<div style="width:45%; float:left;">
+<div>
     <p>Count of Days Treated: ${countDaysAdded}</p>
 
 

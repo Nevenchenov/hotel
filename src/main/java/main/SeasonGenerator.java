@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * Created by Rain on 21-Apr-17.
+ * @author Y.Nevenchenov
+ *
+ * Created on 21-Apr-17.
  */
 public class SeasonGenerator {
     //start&finish season:

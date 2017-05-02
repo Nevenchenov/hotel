@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/src" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/main" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/main/DBConnector.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/main/DBRoomWriter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/main/DBSeasonWriter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/main/FieldValueExtractor.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/main/Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/main/SeasonGenerator.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/servlets" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/servlets/roomsFillingServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/servlets/seasonGeneratingServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/servlets/showPeriodServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/servlets/startPageServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/templater" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/templater/PageGenerator.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/start.bat" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/templates" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

@@ -31,7 +31,7 @@ public class DBSeasonWriter {
         String update;
 
 
-        String query;
+        String query = "select * FROM `hotel`.`days`";
 
         try {
             // opening database connection to MySQL server
@@ -53,7 +53,6 @@ public class DBSeasonWriter {
             }
 
             // checking appearance of room added in DB
-            query = "select * FROM `hotel`.`days`";
             rs = stmt.executeQuery(query);
             int rowsCount = 0;
             while (rs.next()) {

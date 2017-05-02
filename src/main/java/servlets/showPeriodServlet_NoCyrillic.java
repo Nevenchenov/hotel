@@ -22,20 +22,26 @@ import java.util.Map;
  *
  *
  */
-public class seasonGeneratingServlet extends HttpServlet {
+public class showPeriodServlet_NoCyrillic extends HttpServlet {
 
-    private static Map<String, String> settingSeasonParameters = new HashMap<>();
+    private static Map<String, String> userSeasonParameters = new HashMap<>();
+
+    String hotelName = "\"Irena\". " + "Hotel. ";
+    String currentYear = String.valueOf(LocalDate.now().getYear());
+
 
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response) throws ServletException, IOException {
-        
-        settingSeasonParameters.put("promptText", "Select Start and End Dates of matter season:");
-        settingSeasonParameters.put("start", "First Day of Season:");
-        settingSeasonParameters.put("end", "Last Day of Season:");
-        settingSeasonParameters.put("countDaysAdded", "no Days as yet");
-        settingSeasonParameters.put("isWrote", "are sent to DB");
 
-        response.getWriter().println(PageGenerator.instance().getPage("makeSeason.html", settingSeasonParameters));
+        
+        userSeasonParameters.put("promptText", "Choose viewed period:");
+        userSeasonParameters.put("start", "Start Date:");
+        userSeasonParameters.put("end", "Finish Date:");
+        userSeasonParameters.put("hotelName", hotelName);
+        userSeasonParameters.put("currentYear", currentYear);
+        userSeasonParameters.put("title", "Apartments Reserving. " + hotelName + currentYear + "г." );
+
+        response.getWriter().println(PageGenerator.instance().getPage("index.html", userSeasonParameters));
 
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
@@ -60,15 +66,19 @@ public class seasonGeneratingServlet extends HttpServlet {
         DBSeasonWriter.sendToDB(calendar);
 
         // add report to response
-        settingSeasonParameters.put("isWrote", DBSeasonWriter.isWrote);
+        userSeasonParameters.put("isWrote", DBSeasonWriter.isWrote);
 
         // Count of Days treated to
-        settingSeasonParameters.put("countDaysAdded", String.valueOf(DBSeasonWriter.count));
+        userSeasonParameters.put("countDaysAdded", String.valueOf(DBSeasonWriter.count));
 
         //refresh web-page
-        response.getWriter().println(PageGenerator.instance().getPage("makeSeason.html", settingSeasonParameters));
+        response.getWriter().println(PageGenerator.instance().getPage("index.html", userSeasonParameters));
     }
 
+    public void destroy() {
 
+        super.destroy();
+
+    }
 
 }
