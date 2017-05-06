@@ -1,7 +1,5 @@
 package main;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -13,13 +11,8 @@ import java.sql.Statement;
  *
  */
 
-public class DBOccupationMapFill {
+public class DBOccupationMapFill  extends DBOperate{
  
-    // JDBC variables for opening and managing connection
-    private static Connection con;
-    private static Statement stmt;
-    private static ResultSet rs;
-
     // db operating and returned data
     public static int daysCount = 0;
     public static int bedsCount = 0;

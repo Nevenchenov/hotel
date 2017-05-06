@@ -6,7 +6,10 @@
 </head>
 <body>
 <h1>${hotelName} Отдых ${currentYear}</h1>
-<div style="width:45%; float:left;">
+<div>
+    ${outputTable}
+</div>
+<div>
     <p>${promptText}</p>
     <form action="/*" method="POST">
         ${start}<br> <input type="date" name="startDate"/><br>
@@ -14,12 +17,7 @@
         Показать &nbsp;&nbsp; -> &nbsp;&nbsp; <input type="submit" value="Ok">
     </form>
 </div>
-<div style="width:45%; float:left;">
 
-
-
-
-</div>
 </body>
 </html>
 

@@ -14,19 +14,28 @@ import servlets.*;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-        startPageServlet start = new startPageServlet();
-        occupationMapFillServlet occupationMapFill = new occupationMapFillServlet();
-        seasonGeneratingServlet season = new seasonGeneratingServlet();
+        //admin functional
+        startAdminsPageServlet start = new startAdminsPageServlet();
         roomsFillingServlet rooms = new roomsFillingServlet();
+        seasonGeneratingServlet season = new seasonGeneratingServlet();
+        occupationMapFillServlet occupationMapFill = new occupationMapFillServlet();
+
+        //user functional
         showPeriodServlet showUserPeriod = new showPeriodServlet();
 
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        //admin
         context.addServlet(new ServletHolder(start), "/setHotel");
-        context.addServlet(new ServletHolder(occupationMapFill), "/occupationMapFill");
-        context.addServlet(new ServletHolder(season), "/season");
         context.addServlet(new ServletHolder(rooms), "/rooms");
+        context.addServlet(new ServletHolder(season), "/season");
+        context.addServlet(new ServletHolder(occupationMapFill), "/occupationMapFill");
+
+
+        //user
         context.addServlet(new ServletHolder(showUserPeriod), "/*");
+
+
 
         Server server = new Server(8080);
         server.setHandler(context);

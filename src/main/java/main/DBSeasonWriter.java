@@ -1,9 +1,6 @@
 package main;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -15,12 +12,8 @@ import java.util.ArrayList;
  *
  */
 
-public class DBSeasonWriter {
+public class DBSeasonWriter  extends DBOperate{
  
-    // JDBC variables for opening and managing connection
-    private static Connection con;
-    private static Statement stmt;
-    private static ResultSet rs;
     public static int count;
 
     // data writting indicator

@@ -1,8 +1,8 @@
 package servlets;
 
-import main.DBSeasonWriter;
+import main.DBDayGetter;
 import main.FieldValueExtractor;
-import main.SeasonGenerator;
+import main.TableHeaderMaker;
 import templater.PageGenerator;
 
 import javax.servlet.ServletException;
@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +19,7 @@ import java.util.Map;
  *
  *
  *
- *
+ * Created on 04-May-17.
  */
 public class showPeriodServlet extends HttpServlet {
 
@@ -33,7 +32,7 @@ public class showPeriodServlet extends HttpServlet {
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response) throws ServletException, IOException {
 
-        
+        userSeasonParameters.put("outputTable", "");
         userSeasonParameters.put("promptText", "Выберите период для просмотра:");
         userSeasonParameters.put("start", "Начальная дата:");
         userSeasonParameters.put("end", "Конечная дата:");
@@ -52,24 +51,36 @@ public class showPeriodServlet extends HttpServlet {
     public void doPost(HttpServletRequest request,
                        HttpServletResponse response) throws ServletException, IOException {
 
+        userSeasonParameters.put("promptText", "Желаете выбрать другой период? Пожалуйста:");
+
+        TableHeaderMaker.findInDB();
+
         // startDate
         String startDate = FieldValueExtractor.extractFieldValue("startDate", request, response);
+        LocalDate firstDay = LocalDate.parse(startDate);
 
        // endDate
         String endDate = FieldValueExtractor.extractFieldValue("endDate", request, response);
+        LocalDate lastDay = LocalDate.parse(endDate);
 
 
-        // generate calendar to hotel work within:
-        ArrayList<LocalDate> calendar = SeasonGenerator.generateSeason(startDate, endDate);
 
-        // write room to DB
-        DBSeasonWriter.sendToDB(calendar);
+        // extract dayNumber of start and end from DB
+        int startDay = DBDayGetter.getDay(firstDay);
+        int endDay = DBDayGetter.getDay(lastDay);
 
-        // add report to response
-        userSeasonParameters.put("isWrote", DBSeasonWriter.isWrote);
+        // extract days between start and end from DB occupationMap table
+        for(int i = startDay; i <= endDay; i++){
 
-        // Count of Days treated to
-        userSeasonParameters.put("countDaysAdded", String.valueOf(DBSeasonWriter.count));
+        }
+
+
+
+        // forming output String table
+        String table = "";
+
+        // table to output
+        userSeasonParameters.put("outputTable", table);
 
         //refresh web-page
         response.getWriter().println(PageGenerator.instance().getPage("index.html", userSeasonParameters));

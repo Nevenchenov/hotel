@@ -18,7 +18,7 @@ import java.util.Map;
  *
  *
  */
-public class startPageServlet extends HttpServlet {
+public class startAdminsPageServlet extends HttpServlet {
 
     private static Map<String, String> userSeasonParameters = new HashMap<>();
 
@@ -28,6 +28,7 @@ public class startPageServlet extends HttpServlet {
         String currentYear = String.valueOf(LocalDate.now().getYear());
 
         userSeasonParameters.put("rooms", "set rooms");
+        userSeasonParameters.put("beds", "set beds");
         userSeasonParameters.put("season", "generate season");
         userSeasonParameters.put("occupationMapFill", "generate occupation map");
 

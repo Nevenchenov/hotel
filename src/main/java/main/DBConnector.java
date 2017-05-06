@@ -12,17 +12,14 @@ import java.sql.SQLException;
  *
  */
 
-public class DBConnector {
+public class DBConnector  extends DBOperate{
  
     // JDBC URL, username and password of MySQL server
     private static final String url = "jdbc:mysql://151.80.26.234:3306/hotel";
     private static final String user = "hotel";
     private static final String password = "HotelDB2240";
- 
-    // JDBC variable for opening connection
-    private static Connection con;
 
- 
+
     public static Connection get() {
     	try {
             Class.forName("com.mysql.jdbc.Driver");

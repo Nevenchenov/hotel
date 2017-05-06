@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * @author Y.Nevenchenov
  *
- *
+ * This forms 'occupationMap' table in DB where each bed occupation statements are represented at each day of the season
  *
  *
  */
@@ -26,18 +26,6 @@ public class occupationMapFillServlet extends HttpServlet {
                       HttpServletResponse response) throws ServletException, IOException {
         //nothing to do here / never called
         
-//        settingSeasonParameters.put("promptText", "Select Start and End Dates of matter season:");
-//        settingSeasonParameters.put("start", "First Day of Season:");
-//        settingSeasonParameters.put("end", "Last Day of Season:");
-//        settingSeasonParameters.put("countDaysAdded", "no Days as yet");
-//        settingSeasonParameters.put("isWrote", "are sent to DB");
-//
-//        response.getWriter().println(PageGenerator.instance().getPage("makeSeason.html", settingSeasonParameters));
-//
-//        response.setContentType("text/html;charset=utf-8");
-//        response.setStatus(HttpServletResponse.SC_OK);
-
-
     }
 
     public void doPost(HttpServletRequest request,

@@ -1,39 +1,33 @@
 package main;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Map;
 
 /**
  * @author Y.Nevenchenov
  *
- *
+ * Writes room date in DB 'rooms' table and adds beds into 'beds' DB table
  *
  *
  */
 
-public class DBRoomWriter {
- 
-    // JDBC variables for opening and managing connection
-    private static Connection con;
-    private static Statement stmt;
-    private static ResultSet rs;
+public class DBRoomWriter extends DBOperate{
 
-    // data writting indicator
+
+    // data writing indicator
     public static String isWrote = "<strong>Fill form <br>and press \"OK\"</strong>";
  
     public static void sendToDB(Map<String, String> room) {
 
-        String update = "INSERT INTO hotel.rooms (roomNumber, floor, bedsCount, rank, minPrice, maxPrice) \n" +
+        String updateRooms = "INSERT INTO hotel.rooms (roomNumber, floor, bedsCount, rank, minPrice, maxPrice) \n" +
                             " VALUES (" + room.get("roomNumber") + ", " +
                             room.get("floor") + ", " +
                             room.get("bedsCount") + ", '" +
                             room.get("rank") + "', " +
                             room.get("minPrice") + ", " +
                             room.get("maxPrice") + ");";
+        int bedsCount = Integer.parseInt(room.get("bedsCount"));
 
-        String query = "select * FROM `hotel`.`rooms` ";
+        String queryRoom = "select * FROM `hotel`.`rooms` ";
 
         try {
             // opening database connection to MySQL server
@@ -42,18 +36,44 @@ public class DBRoomWriter {
             // getting Statement object to execute query
             stmt = con.createStatement();
 
+//working with room
             // executing insertion to DB
-            stmt.executeUpdate(update);
+            stmt.executeUpdate(updateRooms);
 
             // checking appearance of room added in DB
-            rs = stmt.executeQuery(query);
+            rs = stmt.executeQuery(queryRoom);
             while (rs.next()) {
                 if(rs.getInt("roomNumber") == Integer.parseInt(room.get("roomNumber"))){
-                System.out.print("DB is updated; ");
-                isWrote = "Writing Complete!";
+                System.out.print("DB is updated by room; ");
+                isWrote = "Room is added.";
                 break;
                 }
             }
+
+//working with beds
+            //find max bed number in 'beds' DB table
+            rs = stmt.executeQuery("SELECT MAX(bedNumber) FROM beds;");
+            rs.next();
+            int lastBedNumberInDB = rs.getInt("MAX(bedNumber)");
+
+            //insert beds in 'beds' DB table setting that numbers
+            for(int i = 1; i <= bedsCount; i++){
+                stmt.executeUpdate("INSERT INTO hotel.beds (bedNumber, whatRoom) \n" +
+                        " VALUES (" + (lastBedNumberInDB + i) + ", " +
+                        room.get("roomNumber") + ");");
+            }
+
+            // checking appearance of beds added in DB
+            rs = stmt.executeQuery("SELECT MAX(bedNumber) FROM beds;");
+            rs.next();
+            int newLastBedNumberInDB = rs.getInt("MAX(bedNumber)");
+
+                if (newLastBedNumberInDB == (lastBedNumberInDB + bedsCount)) {
+                    System.out.print("DB is updated by beds; ");
+                    isWrote += " " + bedsCount + "bed(s) is(are) added.";
+                }
+
+
 
  
         } catch (SQLException sqlEx) {
