@@ -21,9 +21,6 @@ public class TableHeaderMaker extends DBOperate{
     private static Map<String, Integer> numberOfRoomsInEachCategory = new HashMap<>();
 
 
-//?????????????? Make List of Room-Objects and work with that or operate with DB? ???????????????
-
- 
     public static void findInDB() {
 
          try {

@@ -19,6 +19,7 @@ public class Main {
         roomsFillingServlet rooms = new roomsFillingServlet();
         seasonGeneratingServlet season = new seasonGeneratingServlet();
         occupationMapFillServlet occupationMapFill = new occupationMapFillServlet();
+        generateRoomsSummeryServlet generateRoomsSummery = new generateRoomsSummeryServlet();
 
         //user functional
         showPeriodServlet showUserPeriod = new showPeriodServlet();
@@ -30,6 +31,7 @@ public class Main {
         context.addServlet(new ServletHolder(rooms), "/rooms");
         context.addServlet(new ServletHolder(season), "/season");
         context.addServlet(new ServletHolder(occupationMapFill), "/occupationMapFill");
+        context.addServlet(new ServletHolder(generateRoomsSummery), "/generateRoomsSummery");
 
 
         //user

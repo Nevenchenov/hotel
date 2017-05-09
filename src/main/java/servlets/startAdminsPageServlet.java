@@ -31,6 +31,7 @@ public class startAdminsPageServlet extends HttpServlet {
         userSeasonParameters.put("beds", "set beds");
         userSeasonParameters.put("season", "generate season");
         userSeasonParameters.put("occupationMapFill", "generate occupation map");
+        userSeasonParameters.put("generateRoomsSummery", "generate rooms summery");
 
 
 
